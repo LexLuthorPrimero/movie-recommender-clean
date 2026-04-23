@@ -26,3 +26,5 @@ streamlit run app.py
 ## Licencia
 
 MIT
+
+[![CI](https://github.com/LexLuthorPrimero/movie-recommender-clean/actions/workflows/ci.yml/badge.svg)](https://github.com/LexLuthorPrimero/movie-recommender-clean/actions/workflows/ci.yml)

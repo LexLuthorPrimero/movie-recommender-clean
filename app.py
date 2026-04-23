@@ -12,18 +12,18 @@ def load_data():
     embeddings = np.array(df['embedding'].tolist())
     return df, embeddings
 
-movies_df, embeddings = load_data()
-movie_titles = movies_df.set_index('movieId')['title'].to_dict()
-
-movie_id = st.selectbox("Selecciona una película", options=list(movie_titles.keys()), format_func=lambda x: movie_titles[x])
-top_k = st.slider("Número de recomendaciones", 1, 10, 5)
-
 def cosine_similarity_np(a, b):
     a = a.reshape(1, -1)
     dot = np.dot(a, b.T).flatten()
     norm_a = np.linalg.norm(a, axis=1)[0]
     norm_b = np.linalg.norm(b, axis=1)
     return dot / (norm_a * norm_b + 1e-9)
+
+movies_df, embeddings = load_data()
+movie_titles = movies_df.set_index('movieId')['title'].to_dict()
+
+movie_id = st.selectbox("Selecciona una película", options=list(movie_titles.keys()), format_func=lambda x: movie_titles[x])
+top_k = st.slider("Número de recomendaciones", 1, 10, 5)
 
 if st.button("Recomendar"):
     idx = movies_df[movies_df['movieId'] == movie_id].index[0]
